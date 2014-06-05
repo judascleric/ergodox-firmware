@@ -693,6 +693,10 @@ int8_t usb_extra_send(uint8_t report_id, uint16_t data)
 
 int8_t usb_extra_consumer_send()
 {
-	return usb_extra_send(REPORT_ID_CONSUMER, consumer_key);
+    uint16_t consumer_key_current = consumer_key;
+    // clear the consumer key to prevent key repeat on windows
+    consumer_key = 0;
+
+	return usb_extra_send(REPORT_ID_CONSUMER, consumer_key_current);
 }
 

@@ -157,6 +157,8 @@ void kbfun_layer_pop_numpad(void) {
  *
  */
 void kbfun_mediakey_press_release(void) {
+	if (!main_arg_trans_key_pressed)
+		main_arg_any_non_trans_key_pressed = true;
 	uint8_t keycode = kb_layout_get(LAYER, ROW, COL);
 	_kbfun_mediakey_press_release(IS_PRESSED, keycode);
 }
